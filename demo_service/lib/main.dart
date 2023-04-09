@@ -1,6 +1,7 @@
 import 'package:demo_service/model/status.dart';
 import 'package:demo_service/model/task.dart';
 import 'package:demo_service/repository/task-repository.dart';
+import 'package:demo_service/service/slack-service.dart';
 import 'package:demo_service/widget/task-card.dart';
 import 'package:flutter/material.dart';
 
@@ -59,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 TaskRepository taskRepository = TaskRepository();
                 setState(() {
                   task = taskRepository.finishTask(task);
+                  SlackService.notifyFinishTask(task);
                 });
               },),
             ],
